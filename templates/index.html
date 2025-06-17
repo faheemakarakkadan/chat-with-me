@@ -1,0 +1,85 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Chat With Me - PDF Chatbot</title>
+</head>
+<body>
+    <h2>🤖 Chat With Me 🤖</h2>
+    <div id="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Ask something from the PDF..." />
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userInput })
+            });
+            const data = await response.json();
+            document.getElementById('chat-box').innerHTML += `<p><b>You:</b> ${userInput}</p>`;
+            document.getElementById('chat-box').innerHTML += `<p><b>Bot:</b> ${data.reply}</p>`;
+            document.getElementById('user-input').value = '';
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat With Me - PDF AI Chatbot</title>
+    <style>
+        body { font-family: Arial; margin: 40px; background: #f0f0f0; }
+        h1 { color: #333; }
+        #chatbox { width: 100%; height: 300px; background: #fff; padding: 10px; overflow-y: scroll; border: 1px solid #ccc; }
+        input, button { padding: 10px; margin-top: 10px; width: 80%; }
+        button { width: 15%; }
+    </style>
+</head>
+<body>
+    <h1>Chat With Me 🤖 (PDF Based)</h1>
+    <div id="chatbox"></div>
+    <input type="text" id="msg" placeholder="Ask your question here..." />
+    <button onclick="send()">Send</button>
+
+    <script>
+        function send() {
+            const userMsg = document.getElementById('msg').value;
+            const chatbox = document.getElementById('chatbox');
+            chatbox.innerHTML += `<div><b>You:</b> ${userMsg}</div>`;
+
+            fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userMsg })
+            })
+            .then(res => res.json())
+            .then(data => {
+                chatbox.innerHTML += `<div><b>Chat With Me:</b> ${data.reply}</div>`;
+                chatbox.scrollTop = chatbox.scrollHeight;
+                document.getElementById('msg').value = '';
+            })
+            .catch(err => {
+                chatbox.innerHTML += `<div style='color:red;'>Error: ${err}</div>`;
+            });
+        }
+    </script>
+</body>
+</html>
